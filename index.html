@@ -1,0 +1,867 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Starve To Thrive — Turn Pain Into Power</title>
+  <meta name="description" content="A global movement empowering people to rise from adversity and step into purpose. Faith. Resilience. Leadership." />
+  <meta property="og:title" content="Starve To Thrive — Turn Pain Into Power" />
+  <meta property="og:description" content="A global movement helping people transform pain, adversity, and life challenges into strength, purpose, and leadership." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://starvetothrive.co.za" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black:  #0c0b09;
+      --deep:   #111009;
+      --ash:    #161410;
+      --card:   #1a1815;
+      --gold:   #C9972A;
+      --gold-lt:#E8B84B;
+      --white:  #f4f1eb;
+      --text:   #ccc8be;
+      --muted:  #6b6760;
+      --border: rgba(201,151,42,0.15);
+      --border2: rgba(201,151,42,0.08);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── HAMBURGER NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 200;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.1rem 1.5rem;
+      background: rgba(12,11,9,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border2);
+    }
+    .nav-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.3rem;
+      color: var(--white);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .nav-brand span { color: var(--gold); }
+    .nav-right { display: flex; align-items: center; gap: 2rem; }
+    .nav-links-desktop { display: flex; gap: 2rem; list-style: none; }
+    .nav-links-desktop a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links-desktop a:hover { color: var(--gold); }
+    .hamburger {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      padding: 4px;
+      background: none; border: none;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--white);
+      transition: all 0.3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+
+    /* mobile drawer */
+    .mobile-menu {
+      display: none;
+      position: fixed; top: 57px; left: 0; right: 0; bottom: 0;
+      background: rgba(12,11,9,0.98);
+      z-index: 190;
+      flex-direction: column;
+      padding: 3rem 2rem;
+      gap: 2rem;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2rem;
+      font-weight: 600;
+      color: var(--white);
+      text-decoration: none;
+      border-bottom: 1px solid var(--border2);
+      padding-bottom: 1rem;
+      transition: color 0.2s;
+    }
+    .mobile-menu a:hover { color: var(--gold); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      padding-top: 57px;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        linear-gradient(to bottom, rgba(12,11,9,0.55) 0%, rgba(12,11,9,0.72) 50%, rgba(12,11,9,1) 100%),
+        url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80') center/cover no-repeat;
+    }
+    .hero-inner {
+      position: relative; z-index: 2;
+      flex: 1;
+      display: flex; flex-direction: column;
+      justify-content: center; align-items: center;
+      text-align: center;
+      padding: 4rem 1.5rem 3rem;
+    }
+    .hero-kicker {
+      font-family: 'Inter', sans-serif;
+      font-size: 0.7rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+    }
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: clamp(2.8rem, 8vw, 5.5rem);
+      line-height: 1.1;
+      color: var(--white);
+      margin-bottom: 0.4em;
+      max-width: 800px;
+    }
+    .hero-title em { color: var(--gold); font-style: normal; display: block; }
+    .hero-sub {
+      font-size: clamp(0.9rem, 1.8vw, 1.05rem);
+      line-height: 1.75;
+      color: var(--text);
+      opacity: 0.8;
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+    }
+    .hero-btns {
+      display: flex; flex-direction: column;
+      gap: 0.85rem; width: 100%; max-width: 340px;
+    }
+    .btn-gold {
+      background: var(--gold);
+      color: var(--black);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 1rem 1.5rem;
+      border: none; cursor: pointer;
+      text-decoration: none; display: flex;
+      align-items: center; justify-content: center;
+      gap: 0.5rem;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-gold:hover { background: var(--gold-lt); transform: translateY(-1px); }
+    .btn-outline-gold {
+      background: transparent;
+      color: var(--gold);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.95rem 1.5rem;
+      border: 1.5px solid var(--gold);
+      cursor: pointer;
+      text-decoration: none; display: flex;
+      align-items: center; justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+    .btn-outline-gold:hover { background: rgba(201,151,42,0.08); }
+    .btn-dark {
+      background: rgba(255,255,255,0.05);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      padding: 0.95rem 1.5rem;
+      border: 1px solid rgba(255,255,255,0.12);
+      cursor: pointer;
+      text-decoration: none; display: flex;
+      align-items: center; justify-content: center;
+      gap: 0.5rem;
+      transition: all 0.2s;
+    }
+    .btn-dark:hover { border-color: var(--gold); color: var(--gold); }
+
+    /* ── SECTION COMMONS ── */
+    section { padding: 5.5rem 1.5rem; }
+    .container { max-width: 1060px; margin: 0 auto; }
+    .section-kicker {
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.8rem;
+    }
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: clamp(2rem, 5vw, 3.2rem);
+      line-height: 1.15;
+      color: var(--white);
+      margin-bottom: 1.2rem;
+    }
+    .section-title em { color: var(--gold); font-style: normal; }
+    .section-body {
+      font-size: 0.97rem;
+      line-height: 1.8;
+      color: var(--text);
+      opacity: 0.75;
+    }
+
+    /* ── MISSION ── */
+    #mission {
+      background: var(--deep);
+      text-align: center;
+    }
+    #mission .section-body {
+      max-width: 600px;
+      margin: 0 auto 3.5rem;
+    }
+    .pillars-grid {
+      display: flex; flex-direction: column; gap: 1rem;
+      max-width: 600px; margin: 0 auto;
+    }
+    .pillar-card {
+      background: var(--card);
+      border: 1px solid var(--border2);
+      border-radius: 8px;
+      padding: 1.5rem 1.8rem;
+      text-align: left;
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .pillar-card:hover { border-color: var(--border); background: #1f1d19; }
+    .pillar-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+    .pillar-card p {
+      font-size: 0.88rem;
+      line-height: 1.65;
+      color: var(--text);
+      opacity: 0.7;
+    }
+
+    /* ── ABOUT ZELIPHA ── */
+    #about { background: var(--black); }
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .about-photo-wrap {
+      position: relative;
+    }
+    .about-photo {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: top center;
+      display: block;
+      filter: grayscale(15%);
+    }
+    .about-photo-accent {
+      position: absolute;
+      bottom: -1rem; right: -1rem;
+      width: 60%; height: 60%;
+      border: 2px solid var(--gold);
+      z-index: -1;
+      opacity: 0.3;
+    }
+    .about-content .section-body p + p { margin-top: 1rem; }
+    .about-content .section-body strong { color: var(--gold-lt); font-weight: 500; opacity: 1; }
+    .about-name {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: var(--white);
+      margin-bottom: 0.5rem;
+      line-height: 1;
+    }
+    .about-divider {
+      width: 40px; height: 2px;
+      background: var(--gold);
+      margin: 1.2rem 0 1.5rem;
+    }
+
+    /* ── EBOOK ── */
+    #ebook { background: var(--ash); }
+    .ebook-grid {
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .ebook-cover {
+      aspect-ratio: 3/4;
+      background: var(--black);
+      border: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 12px 12px 40px rgba(0,0,0,0.5);
+    }
+    .ebook-cover-inner {
+      position: absolute; inset: 0;
+      background: linear-gradient(160deg, #1a1408 0%, #080706 100%);
+      display: flex; flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem;
+    }
+    .ebook-cover-inner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 25% 75%, rgba(201,151,42,0.12) 0%, transparent 60%);
+    }
+    .ebook-tag {
+      position: absolute; top: 1.2rem; right: 1.2rem;
+      background: var(--gold);
+      color: var(--black);
+      font-size: 0.62rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.75rem;
+    }
+    .ebook-cover-title {
+      position: relative;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 2.2rem;
+      line-height: 1.1;
+      color: var(--white);
+    }
+    .ebook-cover-title span { color: var(--gold); display: block; }
+    .ebook-cover-sub {
+      position: relative;
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: 0.9rem;
+      color: var(--gold);
+      margin-top: 0.4rem;
+    }
+    .ebook-content .section-title { margin-bottom: 0.8rem; }
+    .ebook-content .section-body { margin-bottom: 2rem; }
+    .chapter-list { list-style: none; margin-bottom: 2.5rem; }
+    .chapter-list li {
+      display: flex; align-items: flex-start; gap: 1rem;
+      padding: 0.85rem 0;
+      border-bottom: 1px solid var(--border2);
+      font-size: 0.88rem;
+      color: var(--text);
+      line-height: 1.5;
+    }
+    .ch-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--gold);
+      min-width: 1.8rem;
+      padding-top: 0.05rem;
+    }
+
+    /* ── LEAD CAPTURE ── */
+    #capture { background: var(--deep); }
+    .capture-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .capture-left .section-body { margin-bottom: 2rem; }
+    .perks { list-style: none; }
+    .perks li {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      font-size: 0.88rem;
+      color: var(--text);
+      opacity: 0.8;
+      padding: 0.5rem 0;
+      line-height: 1.5;
+    }
+    .perks li::before {
+      content: '';
+      display: inline-block;
+      width: 16px; height: 16px; min-width: 16px;
+      border: 1.5px solid var(--gold);
+      border-radius: 50%;
+      margin-top: 0.1rem;
+      position: relative;
+    }
+    .perks li::after {
+      content: none;
+    }
+    /* reuse checkmark differently */
+    .perk-check {
+      color: var(--gold);
+      font-size: 0.7rem;
+      min-width: 1rem;
+      margin-top: 0.15rem;
+    }
+
+    .form-box {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 2.5rem;
+    }
+    .form-box-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 700;
+      font-size: 1.6rem;
+      color: var(--white);
+      margin-bottom: 0.3rem;
+    }
+    .form-box-sub {
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin-bottom: 1.8rem;
+    }
+    .form-group { margin-bottom: 1rem; }
+    .form-group label {
+      display: block;
+      font-size: 0.67rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.45rem;
+    }
+    .form-group input {
+      width: 100%;
+      background: var(--ash);
+      border: 1px solid rgba(201,151,42,0.15);
+      color: var(--white);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.92rem;
+      padding: 0.85rem 1rem;
+      outline: none;
+      border-radius: 0;
+      transition: border-color 0.2s;
+      -webkit-appearance: none;
+    }
+    .form-group input:focus { border-color: var(--gold); }
+    .form-group input::placeholder { color: #3a3832; }
+    .form-submit {
+      width: 100%;
+      background: var(--gold);
+      color: var(--black);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.82rem;
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 1.1rem;
+      border: none; cursor: pointer;
+      margin-top: 0.75rem;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .form-submit:hover { background: var(--gold-lt); transform: translateY(-1px); }
+    .form-submit:disabled { opacity: 0.45; cursor: not-allowed; transform: none; }
+    .form-note {
+      font-size: 0.68rem;
+      color: var(--muted);
+      margin-top: 0.85rem;
+      text-align: center;
+      line-height: 1.5;
+    }
+    #form-status {
+      margin-top: 1rem;
+      font-size: 0.85rem;
+      min-height: 1.2rem;
+      text-align: center;
+      font-weight: 500;
+    }
+    #form-status.success { color: var(--gold); }
+    #form-status.error { color: #d96b6b; }
+
+    /* ── QUOTE STRIP ── */
+    #quote-strip {
+      background: var(--gold);
+      padding: 4rem 1.5rem;
+      text-align: center;
+    }
+    .quote-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-weight: 600;
+      font-size: clamp(1.3rem, 3vw, 2rem);
+      color: var(--black);
+      max-width: 680px;
+      margin: 0 auto 1rem;
+      line-height: 1.5;
+    }
+    .quote-attr {
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(12,11,9,0.5);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--ash);
+      padding: 3rem 1.5rem 2rem;
+      border-top: 1px solid var(--border2);
+    }
+    .footer-inner {
+      max-width: 1060px; margin: 0 auto;
+      display: flex; flex-direction: column;
+      align-items: center; gap: 1.5rem;
+      text-align: center;
+    }
+    .footer-brand {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      font-size: 1.4rem;
+      color: var(--white);
+      text-decoration: none;
+    }
+    .footer-brand span { color: var(--gold); }
+    .footer-tagline {
+      font-size: 0.78rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+    .footer-links {
+      display: flex; gap: 2rem; list-style: none; flex-wrap: wrap;
+      justify-content: center;
+    }
+    .footer-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.75rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--gold); }
+    .footer-copy {
+      font-size: 0.68rem;
+      color: rgba(107,103,96,0.45);
+    }
+    .footer-divider {
+      width: 100%; max-width: 1060px;
+      height: 1px; background: var(--border2);
+      margin: 1rem auto;
+    }
+
+    /* ── SCROLL ANIMATIONS ── */
+    .fade-up {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 800px) {
+      .nav-links-desktop { display: none; }
+      .hamburger { display: flex; }
+      .about-grid,
+      .ebook-grid,
+      .capture-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .about-photo-wrap { max-width: 340px; margin: 0 auto; }
+      .ebook-cover { max-width: 280px; margin: 0 auto; }
+      section { padding: 4rem 1.25rem; }
+      .form-box { padding: 1.75rem; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .fade-up { opacity: 1; transform: none; }
+      html { scroll-behavior: auto; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#hero" class="nav-brand">Starve To <span>Thrive</span></a>
+    <div class="nav-right">
+      <ul class="nav-links-desktop">
+        <li><a href="#about">About</a></li>
+        <li><a href="#mission">Mission</a></li>
+        <li><a href="#ebook">Free Resources</a></li>
+        <li><a href="#capture">Contact</a></li>
+      </ul>
+      <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#about" onclick="closeMenu()">About</a>
+    <a href="#mission" onclick="closeMenu()">Mission</a>
+    <a href="#ebook" onclick="closeMenu()">Free Resources</a>
+    <a href="#capture" onclick="closeMenu()">Contact</a>
+  </div>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-inner fade-up">
+      <p class="hero-kicker">A Global Movement</p>
+      <h1 class="hero-title">
+        Starve To Thrive —
+        <em>Turn Pain Into Power</em>
+      </h1>
+      <p class="hero-sub">A global movement helping people transform pain, adversity, and life challenges into strength, purpose, and leadership.</p>
+      <div class="hero-btns">
+        <a href="#capture" class="btn-gold">Download the Free Guide</a>
+        <a href="#mission" class="btn-outline-gold">Our Mission</a>
+        <a href="#about" class="btn-dark">Meet Zelipha</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section id="mission">
+    <div class="container">
+      <div class="fade-up">
+        <p class="section-kicker">Our Mission</p>
+        <h2 class="section-title">Empowering People to Rise</h2>
+        <p class="section-body">We believe that within every challenge lies the seed of transformation. Our mission is to equip people worldwide with the mindset, tools, and community to turn their pain into purpose and lead powerful, meaningful lives.</p>
+      </div>
+      <div class="pillars-grid fade-up">
+        <div class="pillar-card">
+          <h3>Faith</h3>
+          <p>Anchored in the belief that there is a greater plan for every life.</p>
+        </div>
+        <div class="pillar-card">
+          <h3>Resilience</h3>
+          <p>Building unshakeable strength through every season of life.</p>
+        </div>
+        <div class="pillar-card">
+          <h3>Purpose</h3>
+          <p>Helping people discover and walk boldly in their calling.</p>
+        </div>
+        <div class="pillar-card">
+          <h3>Leadership</h3>
+          <p>Developing leaders who inspire others to rise.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT ZELIPHA -->
+  <section id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-photo-wrap fade-up">
+          <img src="zelipha.jpg" alt="Zelipha Karimatsenga — Founder of Starve To Thrive" class="about-photo" />
+          <div class="about-photo-accent"></div>
+        </div>
+        <div class="about-content fade-up">
+          <p class="section-kicker">The Founder</p>
+          <h2 class="about-name">Zelipha</h2>
+          <div class="about-divider"></div>
+          <div class="section-body">
+            <p>Zelipha's journey didn't begin on a stage or in the spotlight. It began in the quiet places of pain — in moments of emotional hardship, personal loss, and the kind of struggles that most people never speak about.</p>
+            <p>Through seasons of adversity, she discovered something profound: that pain is not the end of the story — it is the beginning of purpose. Through faith, resilience, and radical self-discovery, Zelipha transformed her deepest wounds into her greatest wisdom.</p>
+            <p>She created <strong>Starve To Thrive</strong> as more than a brand — it is a global message, a rallying cry for every soul who has known suffering. It is an invitation to starve the fear, the doubt, and the limitations that hold us back — and to thrive in purpose, power, and leadership.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EBOOK -->
+  <section id="ebook">
+    <div class="container">
+      <div class="ebook-grid">
+        <div class="ebook-cover fade-up">
+          <div class="ebook-cover-inner">
+            <span class="ebook-tag">Free Download</span>
+            <div class="ebook-cover-title">
+              Starve<span>To Thrive</span>
+            </div>
+            <p class="ebook-cover-sub">From Struggle To Strength</p>
+          </div>
+        </div>
+        <div class="ebook-content fade-up">
+          <p class="section-kicker">Free Resource</p>
+          <h2 class="section-title">Your Story Is<br>Your <em>Strategy</em></h2>
+          <p class="section-body">The complete Starve To Thrive framework — written for those who are ready to stop hiding from their story and start building on it. Practical, faith-rooted, and built for real transformation.</p>
+          <ul class="chapter-list">
+            <li><span class="ch-num">01</span> Why your pain is your most undervalued resource</li>
+            <li><span class="ch-num">02</span> The Hunger Mindset — transforming scarcity into drive</li>
+            <li><span class="ch-num">03</span> Strategic resilience: from surviving to advancing</li>
+            <li><span class="ch-num">04</span> Building your identity anchor under pressure</li>
+            <li><span class="ch-num">05</span> Resourceful execution in every season</li>
+            <li><span class="ch-num">06</span> Designing a legacy from exactly where you start</span></li>
+          </ul>
+          <a href="#capture" class="btn-gold" style="max-width:280px">Download Free — No Cost</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEAD CAPTURE -->
+  <section id="capture">
+    <div class="container">
+      <div class="capture-grid">
+        <div class="capture-left fade-up">
+          <p class="section-kicker">Get Instant Access</p>
+          <h2 class="section-title">Download the<br><em>Free Guide</em></h2>
+          <p class="section-body">Enter your details and the guide lands in your inbox immediately. No spam. Just the framework that changes how you see your own story.</p>
+          <ul class="perks" style="margin-top:1.5rem">
+            <li><span class="perk-check">&#10003;</span> 6 chapters of practical, faith-rooted framework</li>
+            <li><span class="perk-check">&#10003;</span> Written for real people facing real challenges</li>
+            <li><span class="perk-check">&#10003;</span> Personal development and purpose combined</li>
+            <li><span class="perk-check">&#10003;</span> Immediate download — no waiting</li>
+            <li><span class="perk-check">&#10003;</span> Completely free. Unsubscribe at any time.</li>
+          </ul>
+        </div>
+        <div class="form-box fade-up">
+          <p class="form-box-title">Get My Free Guide</p>
+          <p class="form-box-sub">Takes 30 seconds. Yours immediately.</p>
+          <div id="capture-form">
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" id="fname" placeholder="Your first name" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" placeholder="your@email.com" required />
+            </div>
+            <div class="form-group">
+              <label for="phone">WhatsApp Number <span style="opacity:0.4;font-size:0.65rem">(optional)</span></label>
+              <input type="tel" id="phone" placeholder="+27 00 000 0000" />
+            </div>
+            <button class="form-submit" id="submit-btn" onclick="handleSubmit()">Send Me The Free Guide</button>
+            <p class="form-note">Your information is private. We do not sell or share it with anyone.</p>
+            <div id="form-status"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE -->
+  <div id="quote-strip">
+    <p class="quote-text">"Pain is not the end of the story — it is the beginning of purpose."</p>
+    <p class="quote-attr">— Zelipha, Founder of Starve To Thrive</p>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-inner">
+      <a href="#hero" class="footer-brand">Starve To <span>Thrive</span></a>
+      <p class="footer-tagline">A global movement empowering people to rise from adversity and step into purpose.</p>
+      <ul class="footer-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#mission">Mission</a></li>
+        <li><a href="#ebook">Free Resources</a></li>
+        <li><a href="#capture">Contact</a></li>
+      </ul>
+      <div class="footer-divider"></div>
+      <p class="footer-copy">&copy; 2026 Starve To Thrive. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw0vFq-aS_YFWOscqhm1rHJvZTOWjEE_pYNSH2sdx973prkE9lt0GV3NWXv0C9Pzo1m/exec';
+
+    async function handleSubmit() {
+      const fname = document.getElementById('fname').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const btn   = document.getElementById('submit-btn');
+      const status = document.getElementById('form-status');
+
+      if (!fname || !email) {
+        status.textContent = 'Please enter your name and email.';
+        status.className = 'error'; return;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        status.textContent = 'Please enter a valid email address.';
+        status.className = 'error'; return;
+      }
+
+      btn.disabled = true;
+      btn.textContent = 'Sending...';
+      status.textContent = ''; status.className = '';
+
+      const params = new URLSearchParams({
+        fname, email, phone,
+        source: 'StarveToThrive Landing Page',
+        timestamp: new Date().toISOString()
+      });
+
+      try {
+        await fetch(`${APPS_SCRIPT_URL}?${params.toString()}`, { method: 'GET', mode: 'no-cors' });
+        status.textContent = 'You are in. Check your inbox — the guide is on its way.';
+        status.className = 'success';
+        btn.textContent = 'Done — Check Your Inbox';
+        document.getElementById('fname').value = '';
+        document.getElementById('email').value = '';
+        document.getElementById('phone').value = '';
+      } catch {
+        status.textContent = 'Something went wrong. Please try again.';
+        status.className = 'error';
+        btn.disabled = false;
+        btn.textContent = 'Send Me The Free Guide';
+      }
+    }
+
+    // hamburger
+    const ham = document.getElementById('hamburger');
+    const mob = document.getElementById('mobile-menu');
+    ham.addEventListener('click', () => {
+      ham.classList.toggle('open');
+      mob.classList.toggle('open');
+      document.body.style.overflow = mob.classList.contains('open') ? 'hidden' : '';
+    });
+    function closeMenu() {
+      ham.classList.remove('open');
+      mob.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    // scroll fade
+    const observer = new IntersectionObserver(
+      entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }),
+      { threshold: 0.1 }
+    );
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // enter key
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Enter' && document.activeElement.closest('#capture-form')) handleSubmit();
+    });
+  </script>
+</body>
+</html>
